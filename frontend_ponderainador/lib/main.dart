@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_ponderainador/app_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ponderainador Mobile',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: const Color.fromARGB(255, 31, 74, 161)),
+        colorScheme: .fromSeed(seedColor: const Color.fromRGBO(255, 255, 255, 1.0)),
       ),
-      home: const MyHomePage(title: 'Ponderainador Mobile'),
+      home: const MyHomePage(title: 'Mis Promedios'),
     );
   }
 }
@@ -33,7 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-
       _counter++;
     });
   }
@@ -42,12 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
+      appBar: PromediosAppBar(
+        texto: 'Este es el botón de ajustes',
+        onPressed: () => _incrementCounter(),
       ),
+      
       body: Center(
 
         child: Column(
