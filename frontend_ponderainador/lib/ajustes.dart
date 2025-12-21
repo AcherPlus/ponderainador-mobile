@@ -9,7 +9,9 @@ class PaginaAjustes extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: PromediosAppBar()
+      appBar: AppBarComponente(
+        texto: 'Ajustes',
+      )
     );
   }
 }

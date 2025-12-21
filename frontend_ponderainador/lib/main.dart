@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_ponderainador/app_bar.dart';
-import 'package:frontend_ponderainador/ajustes.dart';
+import 'package:frontend_ponderainador/promedios.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,56 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Ponderainador Mobile',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: const Color.fromRGBO(255, 255, 255, 1.0)),
+        colorScheme: .fromSeed(seedColor: const Color.fromRGBO(31, 74, 161, 1.0)),
       ),
-      home: const MyHomePage(title: 'Mis Promedios'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: PromediosAppBar(),
-      
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      home: const PromediosPagina(),
     );
   }
 }

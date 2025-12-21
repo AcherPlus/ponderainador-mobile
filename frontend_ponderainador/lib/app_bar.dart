@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_ponderainador/ajustes.dart';
+import './styles/app_styles.dart';
+import 'ajustes.dart';
 
-const kPrimaryColor = Color.fromRGBO(255, 255, 255, 1.0);
+class AppBarComponente extends StatelessWidget implements PreferredSizeWidget {
+  final String texto;
 
-class PromediosAppBar extends StatelessWidget implements PreferredSizeWidget{
-
-  const PromediosAppBar({
-    super.key,
-  });
+  const AppBarComponente({super.key, required this.texto});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: kPrimaryColor,
-      title: Text(
-        'Este es el botón de ajustes',
-        style: const TextStyle(color: Colors.black)
-      ),
+      automaticallyImplyLeading: false,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      title: Text(texto, style: const TextStyle(color: AppStyles.kWhiteColor)),
 
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.settings),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PaginaAjustes())),
+          color: AppStyles.kWhiteColor,
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PaginaAjustes()),
+          ),
         ),
-
       ],
     );
   }
