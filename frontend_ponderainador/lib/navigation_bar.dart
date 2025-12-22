@@ -25,7 +25,7 @@ class NavigationBarComponente extends StatelessWidget {
         onDestinationSelected: onIndexChanged,
         backgroundColor: Theme.of(context).colorScheme.primary,
         selectedIndex: currentIndex,
-        indicatorColor: Color.fromRGBO(134, 134, 161, 1.0),
+        indicatorColor: AppStyles.indicatorColor,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.history, color: AppStyles.kWhiteColor),
