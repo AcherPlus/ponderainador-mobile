@@ -1,15 +1,75 @@
 import 'package:flutter/material.dart';
+import './styles/app_styles.dart';
 
-class NotaTotalPagina extends StatelessWidget{
-  const NotaTotalPagina ({super.key});
+class NotaTotalPagina extends StatelessWidget {
+  const NotaTotalPagina({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text('Acá iran los campos para la nota total')
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+            child: Text(
+              'Nota Total',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          SizedBox(
+            width: 300,
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Examen Parcial (30%)',
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          SizedBox(
+            width: 300,
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Examen Final (30%)',
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          SizedBox(
+            width: 300,
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Evaluación Continua (40%)',
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          SizedBox(
+            width: 300,
+            height: 40,
+            child: ElevatedButton.icon(
+              icon: Icon(Icons.check),
+              label: Text('Calcular nota'),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: AppStyles.kWhiteColor,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                iconColor: AppStyles.kWhiteColor,
+                textStyle: TextStyle(fontSize: 16),
+              ),
+              onPressed: () => {
+                // Futura función
+              },
+            ),
+          ),
         ],
       ),
     );

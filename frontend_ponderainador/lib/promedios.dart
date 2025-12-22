@@ -24,7 +24,7 @@ class _PromediosPaginaState extends State<PromediosPagina> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComponente(texto: _obtenerTitulo(_indiceActual)),
+      appBar: AppBarComponente(),
 
       body: _pantallas[_indiceActual],
 
@@ -37,13 +37,5 @@ class _PromediosPaginaState extends State<PromediosPagina> {
         }
       ),
     );
-  }
-
-  String _obtenerTitulo(int index) {
-    switch(index){
-      case 1: return 'Nota Total';
-      case 2: return 'Nota Individual';
-      default: return 'Mis Promedios';
-    }
   }
 }

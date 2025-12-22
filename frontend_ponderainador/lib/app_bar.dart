@@ -3,9 +3,8 @@ import './styles/app_styles.dart';
 import 'ajustes.dart';
 
 class AppBarComponente extends StatelessWidget implements PreferredSizeWidget {
-  final String texto;
 
-  const AppBarComponente({super.key, required this.texto});
+  const AppBarComponente({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -15,7 +14,7 @@ class AppBarComponente extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Theme.of(context).colorScheme.primary,
-      title: Text(texto, style: const TextStyle(color: AppStyles.kWhiteColor)),
+      title: Text('Ponderainador', style: const TextStyle(color: AppStyles.kWhiteColor)),
 
       actions: <Widget>[
         IconButton(
