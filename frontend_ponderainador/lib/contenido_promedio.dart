@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_ponderainador/styles/app_styles.dart';
 
-class ContenidoPromedio extends StatelessWidget{
+class ContenidoPromedio extends StatelessWidget {
   ContenidoPromedio({super.key});
 
   final List<String> entries = <String>['A', 'B', 'C'];
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const Padding(
           padding: EdgeInsets.all(20.0),
-          child: Text('Mis Promedios',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold
-            ),
+          child: Text(
+            'Mis Promedios',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         Expanded(
@@ -40,16 +38,20 @@ class ContenidoPromedio extends StatelessWidget{
                     // );
                   },
                   textColor: AppStyles.kWhiteColor,
-                  trailing: Icon(Icons.arrow_right, color: AppStyles.kWhiteColor, size: 30.0,),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                    color: AppStyles.kWhiteColor,
+                    size: 30.0,
+                  ),
                   minVerticalPadding: 15,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               );
             },
-          )
-        )
+          ),
+        ),
       ],
     );
   }
