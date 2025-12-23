@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_ponderainador/promedios.dart';
+import 'promedios.dart';
 
 void main() {
   runApp(const MyApp());

@@ -93,7 +93,7 @@ class _NotaIndividualPaginaState extends State<NotaIndividualPagina> {
             height: 40,
             child: ElevatedButton.icon(
               icon: Icon(Icons.check),
-              label: Text('Calcular nota'),
+              label: Text('Calcular restante'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: AppStyles.kWhiteColor,
                 backgroundColor: Theme.of(context).colorScheme.primary,
