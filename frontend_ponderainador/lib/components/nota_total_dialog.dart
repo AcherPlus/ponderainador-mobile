@@ -1,59 +1,49 @@
 import 'package:flutter/material.dart';
 
-class EditarDatosDialog extends StatefulWidget {
+class NotaTotalDialog extends StatefulWidget {
+  
+  final double resultado;
   final VoidCallback onPressedCancelar;
   final VoidCallback onPressedGuardar;
 
-  const EditarDatosDialog({
+  const NotaTotalDialog({
     super.key,
+    required this.resultado,
     required this.onPressedCancelar,
     required this.onPressedGuardar,
   });
 
   @override
-  State<EditarDatosDialog> createState() => _EditarDatosDialogState();
+  State<NotaTotalDialog> createState() => _NotaTotalDialog();
 }
 
-class _EditarDatosDialogState extends State<EditarDatosDialog> {
+class _NotaTotalDialog extends State<NotaTotalDialog> {
+  
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        height: 250,
+        height: 150,
         width: 300,
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              child: Text('Editar datos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            ),
-
-            SizedBox(height: 20.0),
-
-            SizedBox(
-              width: 300,
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Nombre',
-                ),
+              child: Text(
+                'Nota Total',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
 
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
 
             SizedBox(
-              width: 300,
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Descripción',
-                ),
-              ),
+              child: Text('Haz obtenido un puntaje de ${widget.resultado}', style: TextStyle(fontSize: 16)),
             ),
 
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

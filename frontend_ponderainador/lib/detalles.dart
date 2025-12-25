@@ -60,15 +60,43 @@ class _DetallesPaginaState extends State<DetallesPagina> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ElevatedButton(
-                          onPressed: () => showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                EditarDatosDialog(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                          ),
+                          onPressed: () async {
+                            final bool? confirmado = await showDialog<bool>(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  EditarDatosDialog(
+                                    onPressedCancelar: () {
+                                      Navigator.pop(context, false);
+                                    },
+                                    onPressedGuardar: () {
+                                      Navigator.pop(context, true);
+                                    },
+                                  ),
+                            );
+
+                            if (!mounted) return;
+
+                            if (confirmado == true) {
+                              await showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) =>
+                                    MensajeExitosoDialog(
+                                      tituloExito: 'Datos actualizados',
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const PromediosPagina(),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                              );
+                            }
+                          },
                           child: Text('Editar'),
                         ),
 

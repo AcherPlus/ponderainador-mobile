@@ -21,7 +21,7 @@ class MensajeExitosoDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(child: Text(tituloExito, style: TextStyle(fontSize: 20))),
+            SizedBox(child: Text(tituloExito, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
 
             SizedBox(height: 20.0),
 

@@ -4,6 +4,11 @@ import './styles/app_styles.dart';
 class NotaTotalPagina extends StatelessWidget {
   const NotaTotalPagina({super.key});
 
+  double calcularPromedio(double nota1, nota2, nota3) {
+    double resultado = 0.3 * (nota1 + nota3) + 0.4 * nota2;
+    return resultado;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -57,6 +62,9 @@ class NotaTotalPagina extends StatelessWidget {
             width: 300,
             height: 40,
             child: ElevatedButton.icon(
+              onPressed: () => {
+                // Futura función
+              },
               icon: Icon(Icons.check),
               label: Text('Calcular nota'),
               style: ElevatedButton.styleFrom(
@@ -65,9 +73,6 @@ class NotaTotalPagina extends StatelessWidget {
                 iconColor: AppStyles.kWhiteColor,
                 textStyle: TextStyle(fontSize: 16),
               ),
-              onPressed: () => {
-                // Futura función
-              },
             ),
           ),
         ],
