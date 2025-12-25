@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import './styles/app_styles.dart';
-import 'ajustes.dart';
+import '../styles/app_styles.dart';
+import '../ajustes.dart';
 
 class AppBarComponente extends StatelessWidget implements PreferredSizeWidget {
-
   const AppBarComponente({super.key});
 
   @override
@@ -14,7 +13,10 @@ class AppBarComponente extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Theme.of(context).colorScheme.primary,
-      title: Text('Ponderainador', style: const TextStyle(color: AppStyles.kWhiteColor)),
+      title: Text(
+        'Ponderainador',
+        style: const TextStyle(color: AppStyles.kWhiteColor),
+      ),
 
       actions: <Widget>[
         IconButton(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'app_bar.dart';
+import 'package:frontend_ponderainador/components/mensaje_confimacion_dialog.dart';
+import 'package:frontend_ponderainador/components/mensaje_exitoso_dialog.dart';
+import 'components/app_bar.dart';
 import './styles/app_styles.dart';
+import './components/editar_datos_dialog.dart';
+import './promedios.dart';
 
 class DetallesPagina extends StatefulWidget {
   final List<Map<String, dynamic>> item;
@@ -24,41 +28,98 @@ class _DetallesPaginaState extends State<DetallesPagina> {
               color: Theme.of(context).colorScheme.primary,
               margin: EdgeInsets.all(20.0),
               child: ListTile(
-                title: Text(widget.item[widget.index]['titulo']),
+                title: Text(
+                  widget.item[widget.index]['titulo'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(widget.item[widget.index]['subtitulo']),
-                    
+
                     SizedBox(height: 20.0),
-                    
-                    Text('Resultados'),
-                    Text('Examen Parcial: 12'),
-                    Text('Examen Final: 11'),
-                    Text('Evaluación Continua: 13'),
+
+                    Text(
+                      'Resultados',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text('- Examen Parcial: 12'),
+                    Text('- Examen Final: 11'),
+                    Text('- Evaluación Continua: 13'),
 
                     SizedBox(height: 10.0),
 
-                    Text('Nota: 13'),
+                    Text(
+                      'Nota: 13',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
 
                     SizedBox(height: 20.0),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        ElevatedButton(onPressed: () => {
-                          print('Próxima función')
-                        }, child: Text(
-                          'Editar'
-                        )),
-                        
-                        const SizedBox(width: 10.0,),
-                        
-                        ElevatedButton(onPressed: () => {
-                          print('Próxima función')
-                        }, child: Text('Eliminar'))
+                        ElevatedButton(
+                          onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                EditarDatosDialog(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                          ),
+                          child: Text('Editar'),
+                        ),
+
+                        const SizedBox(width: 10.0),
+
+                        ElevatedButton(
+                          onPressed: () async {
+                            final bool? confirmado = await showDialog<bool>(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  MensajeConfirmacionDialog(
+                                    tituloExito: 'Eliminar resultado',
+                                    subTituloExito: '¿Estás seguro?',
+                                    onPressedCancelar: () =>
+                                        Navigator.pop(context, false),
+                                    onPressedAceptar: () =>
+                                        Navigator.pop(context, true),
+                                  ),
+                            );
+
+                            if (!mounted) return;
+
+                            if (confirmado == true) {
+                              await showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) =>
+                                    MensajeExitosoDialog(
+                                      tituloExito: 'Resultado eliminado',
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const PromediosPagina(),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppStyles.indicatorColor,
+                            foregroundColor: AppStyles.kWhiteColor,
+                          ),
+                          child: const Text('Eliminar'),
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
                 textColor: AppStyles.kWhiteColor,

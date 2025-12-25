@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import './styles/app_styles.dart';
+import '../styles/app_styles.dart';
 
 class NavigationBarComponente extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onIndexChanged;
-  
+
   const NavigationBarComponente({
     super.key,
     required this.currentIndex,

@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Ponderainador Mobile',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: const Color.fromRGBO(31, 74, 161, 1.0)),
+        colorScheme: .fromSeed(
+          seedColor: const Color.fromRGBO(31, 74, 161, 1.0),
+        ),
       ),
       home: const PromediosPagina(),
     );
