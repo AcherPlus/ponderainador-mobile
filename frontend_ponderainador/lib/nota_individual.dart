@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_ponderainador/components/guardar_datos.dart';
+import 'package:frontend_ponderainador/components/mensaje_exitoso_dialog.dart';
 import 'package:frontend_ponderainador/components/nota_individual_dialog.dart';
+import 'package:frontend_ponderainador/promedios.dart';
 import './styles/app_styles.dart';
 import './components/text_field_nota.dart';
 
@@ -49,18 +51,12 @@ class _NotaIndividualPaginaState extends State<NotaIndividualPagina> {
       notaMax = (0.3 * nota1) + (0.3 * 20) + (0.4 * nota2);
     } else if (valorMenu == 'Evaluación Continua (40%)') {
       notaMin = (10.5 - (0.3 * nota1 + 0.3 * nota2)) / 0.4;
-      print(notaMin);
-
       notaMax = (0.3 * nota1) + (0.3 * nota2) + (0.4 * 20);
-      print(notaMax);
     } else {
       return [0.0, 0.0];
     }
 
-    return [
-      (notaMin * 100).round() / 100,
-      (notaMax * 100).round() / 100,
-    ];
+    return [(notaMin * 100).round() / 100, (notaMax * 100).round() / 100];
   }
 
   @override
@@ -122,18 +118,16 @@ class _NotaIndividualPaginaState extends State<NotaIndividualPagina> {
             height: 40,
             child: ElevatedButton.icon(
               onPressed: () async {
-                if (selectedValue == null){
+                if (selectedValue == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text(
-                        'Por favor, seleccione la nota que busca.',
-                      ),
+                      content: Text('Por favor, seleccione la nota que busca.'),
                       backgroundColor: Colors.redAccent,
                     ),
                   );
                   return;
                 }
-                
+
                 // Obtener texto de controladores
                 String t1 = _nota1Controller.text;
                 String t2 = _nota2Controller.text;
@@ -148,7 +142,11 @@ class _NotaIndividualPaginaState extends State<NotaIndividualPagina> {
                 if (esValido(t1) && esValido(t2)) {
                   double n1 = double.tryParse(_nota1Controller.text) ?? 0.0;
                   double n2 = double.tryParse(_nota2Controller.text) ?? 0.0;
-                  List<double> resultado = calcularRestante(selectedValue, n1, n2);
+                  List<double> resultado = calcularRestante(
+                    selectedValue,
+                    n1,
+                    n2,
+                  );
 
                   final bool? confirmado = await showDialog<bool>(
                     context: context,
@@ -156,9 +154,11 @@ class _NotaIndividualPaginaState extends State<NotaIndividualPagina> {
                       resultadoMinimo: resultado[0],
                       resultadoMaximo: resultado[1],
                       onPressedCancelar: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context, false);
                       },
-                      onPressedGuardar: () {},
+                      onPressedGuardar: () {
+                        Navigator.pop(context, true);
+                      },
                     ),
                   );
 
@@ -168,8 +168,30 @@ class _NotaIndividualPaginaState extends State<NotaIndividualPagina> {
                     await showDialog(
                       context: context,
                       builder: (BuildContext context) => GuardarDatosDialog(
-                        onPressedCancelar: () {},
-                        onPressedGuardar: () {},
+                        onPressedCancelar: () {
+                          Navigator.pop(context);
+                        },
+                        onPressedGuardar: () async {
+                          Navigator.pop(context);
+
+                          await showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                MensajeExitosoDialog(
+                                  tituloExito: 'Resultado Guardado',
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PromediosPagina(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                          );
+                        },
                       ),
                     );
                   }
