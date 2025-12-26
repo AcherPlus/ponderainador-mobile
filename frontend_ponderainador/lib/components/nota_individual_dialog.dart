@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 
-class NotaTotalDialog extends StatefulWidget {
-  final double resultado;
+class NotaIndividualDialog extends StatefulWidget {
+  final double resultadoMinimo;
+  final double resultadoMaximo;
   final VoidCallback onPressedCancelar;
   final VoidCallback onPressedGuardar;
 
-  const NotaTotalDialog({
+  const NotaIndividualDialog({
     super.key,
-    required this.resultado,
+    required this.resultadoMinimo,
+    required this.resultadoMaximo,
     required this.onPressedCancelar,
     required this.onPressedGuardar,
   });
 
   @override
-  State<NotaTotalDialog> createState() => _NotaTotalDialog();
+  State<NotaIndividualDialog> createState() => _NotaIndividualDialog();
 }
 
-class _NotaTotalDialog extends State<NotaTotalDialog> {
+class _NotaIndividualDialog extends State<NotaIndividualDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        height: 150,
+        height: 200,
         width: 300,
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -30,7 +32,7 @@ class _NotaTotalDialog extends State<NotaTotalDialog> {
           children: <Widget>[
             SizedBox(
               child: Text(
-                'Nota Total',
+                'Nota Individual',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -39,7 +41,16 @@ class _NotaTotalDialog extends State<NotaTotalDialog> {
 
             SizedBox(
               child: Text(
-                'Haz obtenido un puntaje de ${widget.resultado}',
+                'Mínimo: ${widget.resultadoMinimo}',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+
+            SizedBox(height: 10.0),
+
+            SizedBox(
+              child: Text(
+                'Máximo: ${widget.resultadoMaximo}',
                 style: TextStyle(fontSize: 16),
               ),
             ),

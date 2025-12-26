@@ -18,31 +18,22 @@ class TextFieldNota extends StatefulWidget {
 class _TextFieldNotaState extends State<TextFieldNota> {
   String? _errorText;
 
-  @override
-  void dispose(){
-    widget.controller.dispose();
-    super.dispose();
-  }
-
-  void _validarInput(String value){
+  void _validarInput(String value) {
     setState(() {
       final double? numero = double.tryParse(value);
 
       if (value.isEmpty) {
         _errorText = 'No puede estar vacío';
-      }
-      else if (numero == null) {
+      } else if (numero == null) {
         _errorText = 'Formato inválido';
-      }
-      else if (numero < 0 || numero > 20) {
+      } else if (numero < 0 || numero > 20) {
         _errorText = 'Debe estar entre 0 y 20';
-      }
-      else {
+      } else {
         _errorText = null;
       }
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

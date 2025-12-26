@@ -123,13 +123,14 @@ class _NotaTotalPaginaState extends State<NotaTotalPagina> {
                       ),
                     );
                   }
-                }
-                else {
+                } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Por favor, ingresas las notas correctamente (0-20)'),
+                      content: Text(
+                        'Por favor, ingresas las notas correctamente (0-20).',
+                      ),
                       backgroundColor: Colors.redAccent,
-                    )
+                    ),
                   );
                 }
               },
