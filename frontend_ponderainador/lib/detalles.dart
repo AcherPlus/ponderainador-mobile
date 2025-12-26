@@ -64,14 +64,14 @@ class _DetallesPaginaState extends State<DetallesPagina> {
                             final bool? confirmado = await showDialog<bool>(
                               context: context,
                               builder: (BuildContext context) =>
-                                  EditarDatosDialog(
-                                    onPressedCancelar: () {
-                                      Navigator.pop(context, false);
-                                    },
-                                    onPressedGuardar: () {
-                                      Navigator.pop(context, true);
-                                    },
-                                  ),
+                                EditarDatosDialog(
+                                  onPressedCancelar: () {
+                                    Navigator.pop(context, false);
+                                  },
+                                  onPressedGuardar: () {
+                                    Navigator.pop(context, true);
+                                  },
+                                ),
                             );
 
                             if (!mounted) return;
